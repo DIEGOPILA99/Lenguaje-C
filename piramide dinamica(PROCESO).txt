@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int **piramide=NULL;
+    int n;
+    scanf("%d",&n);
+    reservar(&piramide,n);
+    cargar(&piramide,n);
+    printf("\n IMPRIMIR \n");
+    imprimir(&piramide,n);
+    return 0;
+}
+
+void reservar(int***,int);
+void reservar(int ***p,int n){
+    int i,aux=1;
+    *p=(int**)malloc(n*sizeof(int*));
+    for(i=0;i<n;i++){
+        p[i]=(int*)malloc(aux*sizeof(int));
+        aux++;
+    }
+}
+
+
+void cargar(int ***,int );
+void cargar(int ***p,int n){
+    int i,j,num1,num2,aux=1;
+    for(i=0;i<n;i++){
+        for(j=0;j<aux;j++){
+            if((j==0)||(j==(aux-1))){
+                p[i][j]=1;
+            }
+            else{
+                if(aux>2){
+                num1=p[i-1][j-1];
+                num2=p[i-1][j];
+                p[i][j]= (num1+num2);
+
+            }}
+            }aux++;
+        }
+}
+
+void imprimir(int***,int);
+void imprimir(int ***M,int n){
+int i,j,k,aux=1;
+    for(i=0;i<n;i++){
+             for(k=0;k<n+1-aux;k++){printf(" ");}
+             for(j=0;j<aux;j++){
+             printf("%d ",M[i][j]);
+        }
+        aux++;
+        printf("\n")  ;
+    }
+}

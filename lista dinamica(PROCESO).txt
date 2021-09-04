@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct nodoo{
+    int num;
+    struct nodoo *sig;
+};
+
+typedef struct nodoo lista;
+
+void cargar(lista**);
+void agreg_ord(lista**,int);
+void agreg_fin(lista**,int);
+void agreg_ini(lista**,int);
+void imprimir(lista*);
+
+int main(){
+  lista *L=NULL;
+    cargar(&L);
+    imprimir(L);
+return 0;}
+
+void cargar(lista **L){
+int num;
+    printf("se ingresa el numero: ");
+    scanf("%d",&num);
+    while(num!=0){
+        //agreg_ini(L,num);
+        //insertar_fin(L,num);
+        agreg_ord(L,num);
+        printf("se ingresa el numero: ");
+        scanf("%d",&num);
+    }
+}
+
+void imprimir(lista *L){
+    printf("Los valores ingresados son:\n");
+    while (L!=NULL){
+        printf("%d  ",L->num);
+        L=L->sig;
+    }
+}
+
+
+
+void agreg_ini(lista **l,int n){
+  lista *nue;
+    nue=(lista *) malloc(sizeof(lista));
+    nue->num = n;
+    nue->sig=*l;
+    *l=nue;
+}
+
+
+void agreg_ord(lista **l,int n){
+lista *act;
+lista *ant;
+lista *nue=(lista*)malloc(sizeof(lista));
+    nue->num=n;
+    nue->sig=NULL;
+    if(*l==NULL){ *l=nue;}
+    else{
+        act=*l;
+        ant=*l;
+        while((act!=NULL)&&((act->num)<n)){{
+            ant=act;
+            act=act->sig;
+        }}
+        if(ant==act){  *l=nue; }
+        else{
+            ant->sig=nue;}
+        nue->sig=act;
+    }
+}
+
+void insertar_fin(lista **l,int n){
+    lista *nue,*act,*ant;
+    nue=(lista*)malloc(sizeof(lista));
+    nue->num=n;
+    nue->sig=NULL;
+    act=*l;
+    ant=NULL;
+    while(act!=NULL){
+        ant=act;
+        act=act->sig;
+    }
+    if (ant!=NULL){
+        ant->sig=nue;
+    }
+    else { *l=nue; }
+}

@@ -1,0 +1,21 @@
+void procesar(FILE*);
+
+int main(){
+    FILE *arch;
+    arch=fopen("precipitaciones2.txt","r");
+    procesar(arch);
+    fclose(arch);
+return 0;}
+
+
+void procesar(FILE *arch){
+    int cant_elem=0;       int tot=0;
+    int num;
+    if(arch==NULL){printf("el archivo esta vacio");}
+    fscanf(arch,"%d-",&num);
+    while(!feof(arch)){
+        cant_elem++;
+        tot=tot+num;
+        fscanf(arch,"%d-",&num);
+    }
+printf("el tot de precipitaciones es %d en %d dias\n",tot,cant_elem);}

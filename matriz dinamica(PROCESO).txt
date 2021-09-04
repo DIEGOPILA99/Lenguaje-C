@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void reservar_mem(int ***,int,int);
+void cargar(int ***,int,int);
+void imprimir(int ***,int,int);
+
+int main(){
+int **M=NULL;
+int f,c;
+        printf("la cantidad de filas de la matriz es ");scanf("%d",&f);
+        printf("la cantidad de columnas  de la matriz es ");scanf("%d",&c);
+        printf("empezamos reservamos\n");
+        reservar_mem(&M,f,c);
+        printf("terminamos reservamos\n");
+        printf("empezamos a cargar \n");
+        cargar(&M,f,c);
+        printf("terminamos a cargar \n");
+        imprimir(&M,f,c);
+return 0;}
+
+void imprimir(int ***M,int f,int c){
+int i,j;
+    for(i=0;i<f;i++){
+        for(j=0;j<c;j++){
+             printf("%d  ",M[i][j]);
+        } printf("\n");
+    }
+}
+
+void reservar_mem(int ***M,int f,int c){
+int i;
+    *M=(int**)malloc(f*sizeof(int*));
+    for(i=0;i<f;i++){
+        M[i]=(int*)malloc(c*sizeof(int));
+    }
+}
+
+
+void cargar(int ***M,int f,int c){
+int i,j;
+    for(i=0;i<f;i++){
+        for(j=0;j<c;j++){
+             printf("se ingresa el numero ");scanf("%d",&M[i][j]);
+        }
+    }
+}

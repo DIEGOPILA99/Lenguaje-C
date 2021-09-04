@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef double **matriz;
+matriz reservar();
+void liberar(matriz*);
+void cargar(matriz);
+void imprimir(matriz);
+
+int main(){
+    matriz m=reservar();
+    printf("lpm\n");
+    cargar(m);
+    printf("lpm\n");
+    imprimir(m);
+    liberar(&m);
+    printf("lpm\n");
+    imprimir(m);
+    return 0;
+}
+void cargar(matriz m){
+    int i,j;
+    for (i=0;i<2;i++){
+        for (j=0;j<2;j++){
+                   scanf("%lf",(*(m+i)+j));
+}}}
+
+matriz reservar(){
+    int i;
+    matriz m=(double**)malloc(2*sizeof(double*));
+    for (i=0;i<2;i++){
+        m[i] =(double*)malloc(2*sizeof(double));
+    }
+    return m;
+}
+
+void liberar(matriz *m){
+    int i;
+    for (i=0;i<2;i++){free(m[i]);}
+    free(m);
+}
+
+void imprimir(matriz m){
+    int i,j;
+    for (i=0;i<2;i++){
+        for (j=0;j<2;j++){
+                   printf("%lf ",*(*(m+i)+j));
+        }
+        printf("\n");
+}}
