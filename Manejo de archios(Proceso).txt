@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct valoracion{
+    int usuarios;
+    float mensuales;
+    char nombre[31];
+};
+
+int main(){
+    char nombreB[12];scanf("%s",&nombreB);
+    char nombreT[12];scanf("%s",&nombreT);
+    invertir(nombreB,nombreT);
+return 0;}
+
+void invertir(char nomb1[],char nomb2[]);
+void invertir(char nomb1[],char nomb2[]){
+    struct valoracion reg;
+    FILE *B=fopen(nomb1,"rb");
+    if(!eof(B)){
+            FILE *T=fopen(nomb2,"wb");
+            if(!eof(T)){
+                fread(&reg,sizeof(struct valoracion),1,B);
+                while(!eof(B)){
+                    fprintf(T,"%d\t%f\t%s\n",reg.usuarios,reg.mensuales,reg.nombre);
+                    fread(&reg,sizeof(struct valoracion),1,B);
+                }
+                fclose(T);
+                }
+    }
+    fclose(B);
+}
